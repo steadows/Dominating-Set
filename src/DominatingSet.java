@@ -78,10 +78,7 @@ public class DominatingSet {
         long startTime = System.currentTimeMillis();
         for(int i = 1;i < twoToN;i++) {
             SetOfLabels candidate = new SetOfLabels(i,n);
-            // isDominatingSet(candidate);
-            
-            
-            // System.out.println(isDominatingSet(candidate));
+                        
             if (isDominatingSet(candidate)) {
                 if (candidate.getNumberOfElements()<sizeOfSmallestDominatingSet) {
                     smallestDominatingSet = candidate;
