@@ -19,6 +19,7 @@ public class DominatingSet {
         int setAsArray[] = new int[n];
         int result[] = new int[n];
 
+        // convert powerset to binary encoded array
         for(int i = 0;i < n;i++) {
             if (x.contains(NodeLabel.values()[i])) {
                 setAsArray[i] = 1;
@@ -28,6 +29,7 @@ public class DominatingSet {
             }
         }
 
+        // multiply adjacency matrix by the encoded array 
         for (int i = 0; i < n; i++) { // use nested loops to multiply the two arrays together
             int c = 0;
             for (int j = 0; j < setAsArray.length; j++) {
@@ -35,9 +37,10 @@ public class DominatingSet {
                 int m = adjacencyMatrix[j][i];
                 c += l * m; // sum the products of each set of elements
             }
-            result[i] = c;
+            result[i] = c; 
         } 
 
+        // if the resulting array contains a zero, it is not a dominate
         if (Arrays.stream(result).anyMatch(noGo -> noGo == 0) == true) {
             return false;
         }
@@ -78,7 +81,7 @@ public class DominatingSet {
         long startTime = System.currentTimeMillis();
         for(int i = 1;i < twoToN;i++) {
             SetOfLabels candidate = new SetOfLabels(i,n);
-                        
+
             if (isDominatingSet(candidate)) {
                 if (candidate.getNumberOfElements()<sizeOfSmallestDominatingSet) {
                     smallestDominatingSet = candidate;
